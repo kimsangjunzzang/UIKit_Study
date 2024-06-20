@@ -15,10 +15,13 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+    @IBOutlet weak var xButton: UIButton!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let xbutton = xButton
+        xbutton?.setImage(UIImage(systemName: "xmark"), for: .normal)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -28,18 +31,28 @@ class ViewController: UIViewController {
     
     @IBAction func login(_ sender: Any) {
         
-        guard let email = emailField.text, !email.isEmpty else{
-            showAlert("이메일 써라")
-            return
-        }
-        guard let password = passwordField.text, !password.isEmpty else{
-            showAlert("비밀번호 써라")
-            return
-        }
-        if email == "lmk0347@naver.com" && password == "1234"{
+        do {
+            
+            try checkAcount(email: emailField.text, password: passwordField.text)
+            
             showAlert("로그인 성공")
-        }else{
-            showAlert("로그인 실패")
+            
+        } catch {
+            showAlert(error.localizedDescription)
+        }
+    }
+    
+    func checkAcount(email: String?, password: String?) throws {
+        
+        guard let email = email, !email.isEmpty else {
+            throw Week1Error.noEmail
+        }
+        guard let password = password, !password.isEmpty else {
+            throw Week1Error.noPassword
+        }
+        
+        if email != "lmk0347@naver.com" || password != "1234"{
+            throw Week1Error.loginFail
         }
     }
     
@@ -47,18 +60,22 @@ class ViewController: UIViewController {
         let alert = UIAlertController(
             title: "로그인",
             message: "\(message)",
-            preferredStyle: .alert)
+            preferredStyle: .alert
+        )
         
         let okAction = UIAlertAction(
             title: "확인",
-            style: .default)
+            style: .default
+        )
         
         alert.addAction(okAction)
         present(alert, animated: true)
     }
     
 }
+
 extension ViewController : UITextFieldDelegate {
+    
     func textField(
         _ textField: UITextField,
         shouldChangeCharactersIn range: NSRange,
@@ -67,14 +84,19 @@ extension ViewController : UITextFieldDelegate {
         
         var finalEmail = emailField.text ?? ""
         var finalPassword = passwordField.text ?? ""
+        print(range)
         
+        // MARK: emailField 선택시
         if textField == emailField {
             guard let range = Range(range, in: finalEmail) else {
                 return true
             }
+            // 마지막 글자 추가
             finalEmail = finalEmail.replacingCharacters(in: range, with: string)
             
-        }else if textField == passwordField {
+        }
+        
+        else if textField == passwordField {
             guard let range = Range(range, in: finalPassword) else {
                 return true
             }
@@ -86,9 +108,7 @@ extension ViewController : UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldReturn(
-        _ textField: UITextField
-    ) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         switch textField {
         case emailField:
@@ -105,4 +125,19 @@ extension ViewController : UITextFieldDelegate {
 }
 
 
-
+enum Week1Error: Error, LocalizedError {
+    case noEmail
+    case noPassword
+    case loginFail
+    
+    var errorDescription: String? {
+        switch self {
+        case .noEmail:
+            return "이메일 써라"
+        case .noPassword:
+            return "패스워드 써라"
+        case .loginFail:
+            return "로그인 실패"
+        }
+    }
+}
