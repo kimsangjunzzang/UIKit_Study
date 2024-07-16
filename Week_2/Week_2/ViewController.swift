@@ -25,45 +25,45 @@ class ViewController: UIViewController {
     @IBAction func checkCircleBtn1(_ sender: UIButton) {
         
         if sender.currentImage == UIImage(named: "checkCircle") {
-                sender.setImage(UIImage(named: "circle"), for: .normal)
-            } else {sender.setImage(UIImage(named: "checkCircle"), for: .normal)
-            }
+            sender.setImage(UIImage(named: "circle"), for: .normal)
+        } else {
+            sender.setImage(UIImage(named: "checkCircle"), for: .normal)
+        }
     }
     
     @IBAction func checkCircleBtn2(_ sender: UIButton) {
         
         if sender.currentImage == UIImage(named: "checkCircle") {
-                sender.setImage(UIImage(named: "circle"), for: .normal)
-            } else {sender.setImage(UIImage(named: "checkCircle"), for: .normal)
-            }
+            sender.setImage(UIImage(named: "circle"), for: .normal)
+        } else {
+            sender.setImage(UIImage(named: "checkCircle"), for: .normal)
+        }
     }
     @IBAction func checkCircleBtn3(_ sender: UIButton) {
         
         if sender.currentImage == UIImage(named: "checkCircle") {
-                sender.setImage(UIImage(named: "circle"), for: .normal)
-            } else {sender.setImage(UIImage(named: "checkCircle"), for: .normal)
-            }
+            sender.setImage(UIImage(named: "circle"), for: .normal)
+        } else {
+            sender.setImage(UIImage(named: "checkCircle"), for: .normal)
+        }
     }
-    
-    
     
     @IBAction func checkBoxBtn1(_ sender: UIButton) {
         
-        
         if sender.currentImage == UIImage(systemName: "checkmark.square.fill") {
-                sender.setImage(UIImage(systemName: "square"), for: .normal)
-            } else {
-                sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
-            }
+            sender.setImage(UIImage(systemName: "square"), for: .normal)
+        } else {
+            sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
+        }
     }
     
     @IBAction func checkBoxBtn2(_ sender: UIButton) {
         
         if sender.currentImage == UIImage(systemName: "checkmark.square.fill") {
-                sender.setImage(UIImage(systemName: "square"), for: .normal)
-            } else {
-                sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
-            }
+            sender.setImage(UIImage(systemName: "square"), for: .normal)
+        } else {
+            sender.setImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
+        }
     }
 }
 
