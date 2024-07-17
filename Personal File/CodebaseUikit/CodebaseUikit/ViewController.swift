@@ -4,11 +4,9 @@
 //
 //  Created by 김상준 on 7/16/24.
 //
-
 import UIKit
 
 class AutoLayoutView: UIView {
-    
     // UI요소들 정의
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -36,11 +34,14 @@ class AutoLayoutView: UIView {
         self.addSubview(descriptionLabel)
         
         // Bind constraints
-        self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 24).isActive = true
-        self.titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 24).isActive = true
+        self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor,
+                                              constant: 24).isActive = true
+        self.titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,
+                                             constant: 24).isActive = true
         
         self.descriptionLabel.leftAnchor.constraint(equalTo: self.titleLabel.leftAnchor).isActive = true
-        self.descriptionLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 10).isActive = true
+        self.descriptionLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor,
+                                                   constant: 10).isActive = true
     }
     
     required init?(coder: NSCoder) {
