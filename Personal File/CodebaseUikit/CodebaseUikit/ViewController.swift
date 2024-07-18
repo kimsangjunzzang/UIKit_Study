@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class AutoLayoutView: UIView {
+class ViewController: UIViewController {
     // UI요소들 정의
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -26,37 +26,87 @@ class AutoLayoutView: UIView {
         return label
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        self.backgroundColor = .purple
-        self.addSubview(titleLabel)
-        self.addSubview(descriptionLabel)
-        
-        // Bind constraints
-        self.titleLabel.leftAnchor.constraint(equalTo: self.leftAnchor,
-                                              constant: 24).isActive = true
-        self.titleLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor,
-                                             constant: 24).isActive = true
-        
-        self.descriptionLabel.leftAnchor.constraint(equalTo: self.titleLabel.leftAnchor).isActive = true
-        self.descriptionLabel.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor,
-                                                   constant: 10).isActive = true
-    }
+    let myFirstView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 30
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        return view
+    }()
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class ViewController: UIViewController {
+    let mySecondView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .yellow
+        view.layer.cornerRadius = 30
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        return view
+    }()
     
-    private lazy var autoLayoutView = AutoLayoutView(frame: self.view.frame)
+    let myThirdView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        view.layer.cornerRadius = 30
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        return view
+    }()
+    
+    let myFourthView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .lightGray
+        view.layer.cornerRadius = 20
+        view.layer.borderWidth = 5
+        view.layer.borderColor = .init(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.8)
+        view.alpha = 0.3
+        
+        
+        return view
+        
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view = autoLayoutView
+        self.view.backgroundColor = .purple
+        self.view.addSubview(titleLabel)
+        self.view.addSubview(descriptionLabel)
+        self.view.addSubview(myFirstView)
+        self.view.addSubview(mySecondView)
+        self.view.addSubview(myThirdView)
+        self.view.addSubview(myFourthView)
+        
+        // Bind constraints
+        
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 24),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 24),
+            
+            descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,constant: 10),
+            
+            myFirstView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            myFirstView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            myFirstView.widthAnchor.constraint(equalToConstant: 200),
+            myFirstView.heightAnchor.constraint(equalToConstant: 200),
+            
+            mySecondView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,constant: 24),
+            mySecondView.topAnchor.constraint(equalTo: self.myFirstView.bottomAnchor,constant: 40),
+            mySecondView.widthAnchor.constraint(equalToConstant: 200),
+            mySecondView.heightAnchor.constraint(equalToConstant: 200),
+            
+            myThirdView.leadingAnchor.constraint(equalTo: mySecondView.trailingAnchor,constant: 30),
+            myThirdView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            myThirdView.widthAnchor.constraint(equalToConstant: 120),
+            myThirdView.heightAnchor.constraint(equalToConstant: 120),
+            
+            myFourthView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 100),
+            myFourthView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 100),
+            myFourthView.widthAnchor.constraint(equalToConstant: 120),
+            myFourthView.heightAnchor.constraint(equalToConstant: 120),
+        ])
     }
 }
 
