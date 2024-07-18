@@ -34,10 +34,18 @@
 			);
 			target = 1D2BF1E72C495C5E00A16B72 /* Week_4 */;
 		};
+		1D2BF2082C497F5500A16B72 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Item.swift,
+			);
+			target = 1D2BF1E72C495C5E00A16B72 /* Week_4 */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1D2BF1FF2C495D6500A16B72 /* Cell */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1D2BF2022C495D8000A16B72 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Cell; sourceTree = "<group>"; };
+		1D2BF2052C497F3C00A16B72 /* Model */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (1D2BF2082C497F5500A16B72 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Model; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,7 @@
 		1D2BF1EA2C495C5E00A16B72 /* Week_4 */ = {
 			isa = PBXGroup;
 			children = (
+				1D2BF2052C497F3C00A16B72 /* Model */,
 				1D2BF1FF2C495D6500A16B72 /* Cell */,
 				1D2BF1EB2C495C5E00A16B72 /* AppDelegate.swift */,
 				1D2BF1ED2C495C5E00A16B72 /* SceneDelegate.swift */,

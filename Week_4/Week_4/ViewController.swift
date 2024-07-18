@@ -42,11 +42,20 @@ class ViewController: UIViewController{
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return Items.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: ListTableViewCell.self),for: indexPath) as! ListTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: String(describing: ListTableViewCell.self),
+            for:indexPath) as! ListTableViewCell
+        
+        let target = Items[indexPath.row]
+        cell.img.image = target.iconImage
+        cell.titleLabel.text = target.title
+        cell.hashTag.text = target.hashtag
+        
         return cell
     }
     

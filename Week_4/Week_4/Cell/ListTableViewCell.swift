@@ -10,26 +10,29 @@ import UIKit
 
 class ListTableViewCell: UITableViewCell {
     
-    private var img: UIImageView = {
+
+    var img: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "automobile")
-        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 8
+        imageView.contentMode = .scaleToFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
-    private var titleLabel: UILabel = {
+    var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "차박하기 좋은 계절 전국 차박 명소는?"
+        label.font = .systemFont(ofSize: 17)
         return label
     }()
     
-    private var hashTag: UILabel = {
+    var hashTag: UILabel = {
         let label = UILabel()
-        label.text = "# 가정의 달 # 캠핑"
+        label.textColor = .systemGray2
+        label.font = .systemFont(ofSize: 17)
         return label
     }()
     
-    private var stack: UIStackView = {
+    var stack: UIStackView = {
         let stackView = UIStackView()
         return stackView
     }()
@@ -50,7 +53,7 @@ class ListTableViewCell: UITableViewCell {
             img.heightAnchor.constraint(equalToConstant: 74),
             
             titleLabel.leadingAnchor.constraint(equalTo: img.trailingAnchor,constant: 10),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             hashTag.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             hashTag.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
