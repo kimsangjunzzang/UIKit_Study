@@ -5,8 +5,19 @@
 //  Created by 김상준 on 7/16/24.
 //
 import UIKit
+import Foundation
 
-class ViewController: UIViewController {
+
+class MyCircleView: UIView {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        print(self);
+        self.layer.cornerRadius = self.frame.height / 2
+    }
+}
+
+
+class FirstViewController: UIViewController {
     // UI요소들 정의
     let titleLabel: UILabel = {
         let label = UILabel()
@@ -44,14 +55,12 @@ class ViewController: UIViewController {
         return view
     }()
     
-    let myThirdView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .blue
-        view.layer.cornerRadius = 30
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        return view
-    }()
+    let myThirdView : MyCircleView = {
+            let circleView = MyCircleView()
+            circleView.backgroundColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+            circleView.translatesAutoresizingMaskIntoConstraints = false
+            return circleView
+        }()
     
     let myFourthView: UIView = {
         let view = UIView()
