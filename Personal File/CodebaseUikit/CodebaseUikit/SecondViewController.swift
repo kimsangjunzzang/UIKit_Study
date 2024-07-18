@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 
-
 class SecondViewController: UIViewController, UITableViewDelegate{
     
     private let tableView: UITableView = {
@@ -16,15 +15,17 @@ class SecondViewController: UIViewController, UITableViewDelegate{
         return tableview
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
-        
         tableView.register(TableViewCell.self, forCellReuseIdentifier: "TableViewCell")
         setConstraint()
         
+        // autoHeight
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
     }
     
     private func setConstraint() {
@@ -53,5 +54,7 @@ extension SecondViewController: UITableViewDataSource {
         
         return cell
     }
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
 }

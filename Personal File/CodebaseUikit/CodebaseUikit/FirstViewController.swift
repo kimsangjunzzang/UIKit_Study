@@ -11,7 +11,6 @@ import Foundation
 class MyCircleView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
-        print(self);
         self.layer.cornerRadius = self.frame.height / 2
     }
 }

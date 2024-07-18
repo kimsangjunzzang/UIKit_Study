@@ -23,7 +23,6 @@ class TableViewCell : UITableViewCell {
         return label
     }()
     
-    
     private func setConstraint() {
         contentView.addSubview(img)
         contentView.addSubview(label)
@@ -35,9 +34,8 @@ class TableViewCell : UITableViewCell {
             img.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 16),
             img.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             img.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-            
-            img.widthAnchor.constraint(equalToConstant: 10),
-            img.heightAnchor.constraint(equalToConstant: 10),
+            img.widthAnchor.constraint(equalToConstant: 20),
+            img.heightAnchor.constraint(equalToConstant: 20),
             
             label.leadingAnchor.constraint(equalTo: img.trailingAnchor, constant: 15),
             label.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 16),
@@ -48,6 +46,7 @@ class TableViewCell : UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraint()
+        
     }
     
     required init?(coder: NSCoder) {
