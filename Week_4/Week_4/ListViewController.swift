@@ -20,6 +20,20 @@ class ListViewController: UIViewController, UITextFieldDelegate{
         line.backgroundColor =  .systemGray5
         return line
     }()
+    private let hStack: UIStackView = {
+        let view = UIStackView()
+        view.axis = .horizontal
+        
+        var imageView = UIImageView()
+        let img = UIImage(systemName: "magnifyingglass")
+        imageView.image = img
+        
+        var blockView = UIView()
+        view.addArrangedSubview(imageView)
+        view.addArrangedSubview(blockView)
+        
+        return view
+    }()
     private lazy var textField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "내용을 입력해 보세요"
@@ -27,13 +41,8 @@ class ListViewController: UIViewController, UITextFieldDelegate{
         textfield.layer.cornerRadius = 8
         textfield.backgroundColor = .systemGray6
         textfield.clearButtonMode = .always
-        
-        var imageView = UIImageView()
-        let img = UIImage(systemName: "magnifyingglass")
-        imageView.image = img
-        imageView.backgroundColor = .red
-        
-        textfield.rightView = imageView
+        textfield.rightView = hStack
+        textfield.rightView?.tintColor = .black
         textfield.rightViewMode = .unlessEditing
         
         return textfield
@@ -80,6 +89,9 @@ class ListViewController: UIViewController, UITextFieldDelegate{
             textField.topAnchor.constraint(equalTo: divisionLine.bottomAnchor, constant: 16),
             textField.widthAnchor.constraint(equalToConstant: 353),
             textField.heightAnchor.constraint(equalToConstant: 54),
+            
+            hStack.heightAnchor.constraint(equalToConstant: 20),
+            hStack.widthAnchor.constraint(equalToConstant: 25),
             
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
