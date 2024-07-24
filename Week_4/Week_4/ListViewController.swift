@@ -6,9 +6,11 @@
 //
 import UIKit
 
-class ListViewController: UIViewController, UITextFieldDelegate{
+class ListViewController: UIViewController{
     
+    let items = Items
     var item : Item!
+    var searchContent = [Item]()
     
     private var titleLabel: UILabel = {
         var label = UILabel()
@@ -53,17 +55,22 @@ class ListViewController: UIViewController, UITextFieldDelegate{
         let tableview = UITableView()
         return tableview
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         
         textField.delegate = self
+        
         tableView.delegate = self
         tableView.dataSource = self
         
-        view.backgroundColor = .white
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "ListTableViewCell")
+        tableView.reloadData()
+        
         setConstraint()
+        searchHandler()
+        
     }
     func setConstraint() {
         view.addSubview(titleLabel)
@@ -100,12 +107,26 @@ class ListViewController: UIViewController, UITextFieldDelegate{
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    func searchHandler() {
+       
+    }
+    
+}
+extension ListViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let searchText = textField.text {
+            searchContent = searchText.isEmpty ? items : items.filter{$0.title.contains(searchText)}
+            tableView.reloadData()
+        }
+        return true
+    }
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int
     ) -> Int {
-        return Items.count
+        return searchContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath
@@ -114,7 +135,7 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
             withIdentifier: String(describing: ListTableViewCell.self),
             for:indexPath) as! ListTableViewCell
         
-        let target = Items[indexPath.row]
+        let target = searchContent[indexPath.row]
         cell.img.image = target.iconImage
         cell.titleLabel.text = target.title
         cell.hashTag.text = target.hashtag
@@ -123,8 +144,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let nextVC = DetailViewController()
-        nextVC.item = Items[indexPath.row]
-            navigationController?.pushViewController(nextVC, animated: true)
+        nextVC.item = searchContent[indexPath.row]
+        navigationController?.pushViewController(nextVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
