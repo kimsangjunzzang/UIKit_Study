@@ -44,7 +44,7 @@ class ListViewController: UIViewController{
         textfield.borderStyle = .roundedRect
         textfield.layer.cornerRadius = 8
         textfield.backgroundColor = .systemGray6
-        textfield.clearButtonMode = .always
+        textfield.clearButtonMode = .whileEditing
         textfield.rightView = hStack
         textfield.rightView?.tintColor = .black
         textfield.rightViewMode = .unlessEditing
@@ -66,10 +66,9 @@ class ListViewController: UIViewController{
         tableView.dataSource = self
         
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "ListTableViewCell")
-        tableView.reloadData()
         
         setConstraint()
-        searchHandler()
+        searchContent = items
         
     }
     func setConstraint() {
@@ -107,20 +106,35 @@ class ListViewController: UIViewController{
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-    
-    func searchHandler() {
-       
-    }
+   
     
 }
 extension ListViewController: UITextFieldDelegate {
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let searchText = textField.text {
-            searchContent = searchText.isEmpty ? items : items.filter{$0.title.contains(searchText)}
-            tableView.reloadData()
-        }
+   
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        searchContent = items
+        tableView.reloadData()
         return true
     }
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String
+    ) -> Bool {
+        
+        var searchText = textField.text ?? ""
+        guard let range = Range(range, in: searchText) else {
+            return true
+        }
+        searchText = searchText.replacingCharacters(in: range, with: string)
+        print(searchText)
+        searchContent = searchText == "" ? items : items.filter{$0.title.contains(searchText)}
+        tableView.reloadData()
+        
+        return true
+    }
+    
+    
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
