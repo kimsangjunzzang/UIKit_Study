@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class ListTableViewCell: UITableViewCell {
-    
     var img: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 8

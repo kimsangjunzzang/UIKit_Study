@@ -8,6 +8,8 @@ import UIKit
 
 class ListViewController: UIViewController, UITextFieldDelegate{
     
+    var item : Item!
+    
     private var titleLabel: UILabel = {
         var label = UILabel()
         label.text = "캐롯 Pick"
@@ -63,7 +65,6 @@ class ListViewController: UIViewController, UITextFieldDelegate{
         tableView.register(ListTableViewCell.self, forCellReuseIdentifier: "ListTableViewCell")
         setConstraint()
     }
-    
     func setConstraint() {
         view.addSubview(titleLabel)
         view.addSubview(divisionLine)
@@ -102,7 +103,8 @@ class ListViewController: UIViewController, UITextFieldDelegate{
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int
+    ) -> Int {
         return Items.count
     }
     
@@ -118,8 +120,11 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.hashTag.text = target.hashtag
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigationController?.pushViewController(MainViewController(), animated: true)
+        let nextVC = DetailViewController()
+        nextVC.item = Items[indexPath.row]
+            navigationController?.pushViewController(nextVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

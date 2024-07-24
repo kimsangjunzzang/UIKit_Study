@@ -25,7 +25,7 @@ struct Item {
     }
 }
 
-var Items = [
+var Items: [Item] = [
     Item(title: "차박하기 좋은 계정 전국 차박 명소는?", hashtag: "#가정의달 #캠핑", image: "camping"),
     Item(title: "초보 골퍼를 위한 라운딩 필수 준비물", hashtag: "#가정의달 #캠핑", image: "golf"),
     Item(title: "자동차 회사는 AI를 어떻게 활용할까?", hashtag: "#가정의달 #캠핑", image: "mobility"),
