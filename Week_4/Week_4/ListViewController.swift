@@ -19,11 +19,13 @@ class ListViewController: UIViewController{
         label.font = .boldSystemFont(ofSize: 17)
         return label
     }()
+    
     private let divisionLine: UIView = {
         var line = UIView()
         line.backgroundColor =  .systemGray5
         return line
     }()
+    
     private let hStack: UIStackView = {
         let view = UIStackView()
         view.axis = .horizontal
@@ -38,6 +40,7 @@ class ListViewController: UIViewController{
         
         return view
     }()
+    
     private lazy var textField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "내용을 입력해 보세요"
@@ -51,6 +54,7 @@ class ListViewController: UIViewController{
         
         return textfield
     }()
+    
     private lazy var tableView: UITableView = {
         let tableview = UITableView()
         return tableview
@@ -106,12 +110,12 @@ class ListViewController: UIViewController{
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
-   
-    
 }
+
 extension ListViewController: UITextFieldDelegate {
    
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField
+    ) -> Bool {
         searchContent = items
         tableView.reloadData()
         return true
@@ -133,8 +137,6 @@ extension ListViewController: UITextFieldDelegate {
         
         return true
     }
-    
-    
 }
 
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -156,13 +158,15 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath
+    ) {
         let nextVC = DetailViewController()
         nextVC.item = searchContent[indexPath.row]
         navigationController?.pushViewController(nextVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath
+    ) -> CGFloat {
         return 90
     }
     
