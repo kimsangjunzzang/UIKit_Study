@@ -1,14 +1,16 @@
 //
 //  AppDelegate.swift
-//  CodebaseUikit
+//  UIKitTutorial_1
 //
-//  Created by 김상준 on 7/16/24.
+//  Created by 김상준 on 12/16/24.
 //
 
 import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+
+
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
