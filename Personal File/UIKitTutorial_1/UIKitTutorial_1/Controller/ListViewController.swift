@@ -21,7 +21,7 @@ class ListViewController: UIViewController {
     private func setupTableView() {
         myTableView.tableView.delegate = self
         myTableView.tableView.dataSource = self
-        myTableView.tableView.register(PlayerCell.self, forCellReuseIdentifier: "Cell")
+        myTableView.tableView.register(PlayerCellView.self, forCellReuseIdentifier: "Cell")
     }
 }
 
@@ -31,11 +31,11 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? PlayerCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? PlayerCellView else { return UITableViewCell() }
 
         let player = cellData[indexPath.row]
         cell.nameLabel.text = player.name
-        cell.playerImage.image = UIImage(named: player.image)
+        cell.playerImageView.image = UIImage(named: player.image)
         return cell
     }
 
