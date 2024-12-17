@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class PlayerCell: UITableViewCell {
+class PlayerCellView: UITableViewCell {
 
     lazy var playerImage: UIImageView = {
         let imageView = UIImageView()
